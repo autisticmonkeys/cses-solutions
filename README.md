@@ -1,4 +1,5 @@
 # CSES Solutions
+## Language used: Python3
 1. Introductory problems
 - Weird Algorithm
 - Missing Number

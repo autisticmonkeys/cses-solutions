@@ -1,7 +1,16 @@
+from collections import deque
+
 n = int(input())
-'''
-we have to get to 0,0
-we can only move like a knight in chess, so we can move to (x-2, y-1) or (x-1, y-2)
-for each square, we have to find the minimum number of moves to get to 0,0
-each move can have x +- 2 and y +- 1, or x +- 1 and y +- 2  
-'''
+moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]
+grid = [[-1] * n for _ in range(n)]
+grid[0][0] = 0
+queue = deque([(0, 0)])
+while queue:
+    x, y = queue.popleft()
+    for dx, dy in moves:
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == -1:
+            grid[nx][ny] = grid[x][y] + 1
+            queue.append((nx, ny))
+for row in grid:
+    print(*row)
